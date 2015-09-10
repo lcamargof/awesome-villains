@@ -13,4 +13,13 @@ var elixir = require('laravel-elixir');
 
 elixir(function(mix) {
     mix.sass('app.scss');
+    mix.styles([
+        "bootstrap.min.css",
+        "style.css"
+    ], 'public/css/main.css');
+
+    /*----------  Copy modules from vendor to public asset folder  ----------*/
+    // mix.copy('vendor/foo/bar.css', 'public/css/bar.css');
+    // mix.copy('vendor/foo/bar.css', 'public/css/bar.css');
+    
 });

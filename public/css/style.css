@@ -1,0 +1,121 @@
+/**
+ *
+ * CUSTOM CSS 
+ *
+ * Realizado por Luis Camargo
+ *
+ */
+
+/*----------  ELEMENTS  ----------*/
+
+h1, h2, h3, h4, h5, h6 {  
+	font-family: 'montserrat', Optima, Segoe, "Segoe UI", Candara, Calibri, Arial, sans-serif;
+}
+
+a {
+	color: #c52a2a;
+}
+
+a:hover, a:active {
+	color: #7a0d0d;
+	text-decoration: none;
+}
+
+.dl-horizontal {
+	margin: 0;
+	padding: 0;
+}
+
+/*----------  HEADER  ----------*/
+
+#header {
+	position: relative;
+	color: #fff;
+	background-image: url('../img/header-img.jpg');
+	background-position: center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  padding: 100px 0;
+  font-size: 1.8em;
+  text-shadow: -1px 1px 0 #2d2d2f;
+  margin-bottom: 40px;
+}
+
+#header .container .row {
+	position: relative;
+	z-index: 10;
+}
+
+.header-title {
+	font-size: 3.5em;
+}
+
+.header-title span.subtitle {
+	font-size: 0.8em;
+	letter-spacing: -5px;
+}
+
+.header-title span.v-letter {
+	font-size: 1.3em;
+	font-weight: 700;
+	color: #c52a2a;
+}
+
+.v-hr {
+	width: 30%;
+	border-color: #c52a2a;
+}
+
+/*----------  CONTENT  ----------*/
+
+	.v-panel {
+		border-left: 10px #c52a2a solid;
+		position: relative;
+	}
+
+	.a-villain {
+    display: flex;
+    align-items: center;
+    margin: 0 10px;
+    padding: 15px 0;
+    border-bottom: 1px #c52a2a solid;
+	}
+
+	.a-villain:last-child {
+		border-bottom: none;
+	}
+
+	.v-description {
+		border-right: 1px #ccc solid;
+	}
+
+/*----------  FOOTER  ----------*/
+
+footer span {
+	color: #c52a2a;
+}
+
+/*----------  UTILS  ----------*/
+
+.v-link {
+	padding-bottom: 5px;
+	border-bottom: 3px #c52a2a solid; 
+}
+
+.v-link:hover {
+	
+	border-color: #7a0d0d
+	
+}
+
+.background-overlay{
+	background:none repeat scroll 0 0 #242434;
+	height:100%;opacity:0.5;
+	position:absolute;
+	right:0;
+	top:0;
+	width:100%;
+	z-index:9;
+}

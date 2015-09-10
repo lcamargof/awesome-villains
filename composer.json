@@ -6,7 +6,12 @@
     "type": "project",
     "require": {
         "php": ">=5.5.9",
-        "laravel/framework": "5.1.*"
+        "laravel/framework": "5.1.*",
+        "twbs/bootstrap": "^3.3",
+        "components/backbone": "^1.2",
+        "components/jquery": "^2.1",
+        "components/underscore": "^1.7",
+        "components/font-awesome": "^4.4"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
