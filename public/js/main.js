@@ -33,7 +33,15 @@ require.config({
 // No poseo rutas para la aplicación, por lo tanto no lo uso
 
 require([
-  'views/VillainListView'
-], function(App){
+	'jquery',
+   'views/VillainListView'
+], function($, App){
+	// CSRF TOKEN
+	$.ajaxSetup({ 
+		headers: { 
+			'x-csrf-token': $('meta[name="csrf-token"]').attr('content')
+		} 
+	});
+	// Start APP
 	new App().render();
 });
