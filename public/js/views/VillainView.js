@@ -28,12 +28,21 @@ define([
 
     removeVillain: function(e) {
       var villain = prompt("Si quieres eliminar a este awesome villain, al menos debes recordar su alias", "");
+      var that = this;
       if(villain == this.model.toJSON().alias) {
-        this.model.destroy({success: function(model, response) {
-          alert(response);
-        }});
+        this.model.destroy({
+          success: function(model, response) {
+            if(response.result == 'success') {
+              that.$el.remove();
+            }
+            alert(response.msg);
+          },
+          fail: function(mode, response) {
+            alert('No se pudo eliminar el villano.');
+          }
+        });
       }
-    }
+    },
   });
   return villainView;
 });
