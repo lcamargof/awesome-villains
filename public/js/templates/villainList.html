@@ -1,0 +1,31 @@
+<ul>
+  <% _.each(villains, function(villain){ %>
+		<div class="row a-villain">
+			<div class="col-sm-2">
+				<img src="./img/deadpool.jpg" class="img-responsive img-circle" alt="<%= villain.name %> foto">
+			</div>
+			<div class="col-sm-8">
+				<dl class="dl-horizontal v-description">
+				  <dt>Nombre</dt>
+				  <dd><%= villain.name %></dd>
+				  <dt>Alias</dt>
+				  <dd><%= villain.alias %></dd>
+				  <dt>Origen</dt>
+				  <dd><%= villain.origin %></dd>
+				  <dt>Habilidades</dt>
+				  <dd><%= villain.abilities %></dd>
+				  <dt>Awesomeness</dt>
+				  <dd><%= villain.awesomeness %></dd>
+				  <dt>Wiki</dt>
+				  <dd><a href="<%= villain.wiki %>"><%= villain.wiki %></a></dd>
+				</dl>
+			</div>
+			<div class="col-sm-2">
+				<div class="action-btns">
+					<button class="btn btn-warning btn-block edit-villain-btn"><i class="fa fa-pencil"></i> Editar</button>
+					<button class="btn btn-danger btn-block remove-villain-btn"><i class="fa fa-trash"></i> Eliminar</button>
+				</div>
+			</div>
+		</div> 
+  <% }); %>
+</ul>
