@@ -35,8 +35,12 @@ define([
       var that = this;
       Villains.fetch({
         success: function (data) {
-          that.$vContainer.html('');
-          data.each(that.renderVillain)
+        	if(data.length > 0) {
+				that.$vContainer.html('');
+				data.each(that.renderVillain)        		
+        	} else {
+        		that.$vContainer.html('<h1 class="text-center">No existen villanos awesome en la lista :o</h1>')
+        	}
         }
       });
     }

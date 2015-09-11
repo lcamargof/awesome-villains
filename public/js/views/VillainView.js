@@ -41,6 +41,8 @@ define([
             alert('No se pudo eliminar el villano.');
           }
         });
+      } else {
+        alert('Al menos aprendete el alias no?');
       }
     },
   });

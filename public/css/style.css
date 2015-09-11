@@ -101,6 +101,38 @@ label {
 		border-right: 1px #c52a2a solid;
 	}
 
+	#previewImageContainer p {
+		margin-top: 15px;
+	}
+
+	#previewImage {
+		display: block;
+	    -webkit-transition: all 0.4s ease;
+	    -moz-transition: all 0.4s ease;
+	    -o-transition: all 0.4s ease;
+	    transition: all 0.4s ease;
+	    z-index: 2;
+	}
+
+	#avatarInput {
+		display: none;
+	}
+
+	#previewImage:hover {
+		opacity: 0.5;
+		cursor: pointer;
+	}
+
+/*	.img-overlay {
+		background:none repeat scroll 0 0 #242434;
+		height:100%;opacity:0.5;
+		position:absolute;
+		right:0;
+		top:0;
+		width:100%;
+		z-index:9;
+	}
+*/
 /*----------  FOOTER  ----------*/
 
 footer span {

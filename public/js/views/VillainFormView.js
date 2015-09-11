@@ -14,7 +14,14 @@ define([
 		// Template resultado del modal
 		resultTemplate: _.template(VillainResultTemplate),
 
-		initialize: function() {
+		events: {
+        "click #previewImage": "triggerUploadImage",
+        "click .remove-villain-btn": "removeVillain",
+        "change #avatarInput": "updatePreviewImage",
+        "hidden.bs.modal #modal": "removeEvents"
+   	},
+
+		initialize: function() {	
 			if(this.model) {
 				this.villain = this.model.toJSON();
 				this.form = {
@@ -34,7 +41,22 @@ define([
 		},
 
 		render: function() {
-			$(this.el).html(this.template({villain: this.villain, form: this.form})).modal();
+			$(this.el)
+				.html(this.template({villain: this.villain, form: this.form}))
+				.modal()
+				.on('hidden.bs.modal', this.closeModal)
+		},
+
+		triggerUploadImage: function() {
+			$(this.el).find('#avatarInput').trigger('click');
+		},
+
+		closeModal: function(e) {
+			$(this.el).unbind();
+		},
+
+		updatePreviewImage: function(e) {
+			// Update imagepreview
 		}
 	});
 	return villainForm;
