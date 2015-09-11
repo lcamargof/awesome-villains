@@ -21,7 +21,7 @@ define([
     // Template para el resultado
     resultTemplate: _.template(villainResultTemplate),
 
-    // Delegated events for creating new items, and clearing completed ones.
+    // Listener de eventos
     events: {
       'click .edit-villain-btn': 'showEditModal',
       'click .remove-villain-btn': 'showRemoveModal',
