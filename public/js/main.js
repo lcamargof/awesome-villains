@@ -5,7 +5,7 @@ require.config({
 		   exports : '_'
 		},
 		bootstrap : {
-		   dep : [ 'jquery'],
+		   deps : [ 'jquery'],
 		   exports: 'Bootstrap'
 		},
 		backbone : {
