@@ -10,7 +10,10 @@
 					<div class="col-md-10 col-md-push-1">
 						<img src="./img/deadpool.jpg" alt="villain-image" id="previewImage" class="img-circle img-responsive center-block">
 						<hr class="v-hr">
-						<form action="#" method="POST">
+						<form action="<%= form.action %>" method="POST">
+							<% if (form.method) { %>
+							   <input type="hidden" name="_method" value="<%= form.method %>">
+							<% } %>
 							<div class="form-group">
 								<label for="name">Nombre</label>
 								<input type="text" name="name" id="name" class="form-control" placeholder="Ingrese el awesome nombre del villano" value="<%= form.name %>">
@@ -42,7 +45,7 @@
 			</div>
 		</div>
 		<div class="modal-footer">
-			<button type="button" class="btn btn-block btn-danger">Guardar cambios</button>
+			<button type="button" class="btn btn-block btn-danger" data-villain="<%= form.id %>">Guardar cambios</button>
 		</div>
 	</div>
 </div>

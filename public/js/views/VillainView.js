@@ -25,7 +25,6 @@ define([
     events: {
       'click .edit-villain-btn': 'showEditModal',
       'click .remove-villain-btn': 'showRemoveModal',
-      'click #add-villain': 'hola'
     },
 
     // init view
@@ -69,16 +68,12 @@ define([
       this.$modal.html(this.formTemplate({ form: data })).modal();
     },
 
-    hola: function(e) {
-      console.log('epale');
-    },
-
     // show delete modal
     showDeleteModal: function (e) {
       $('.modal').modal();
     },
 
   });
-  // Our module now returns our view
+  // Regresando la awesome lista de villanos
   return villainListView;
 });
