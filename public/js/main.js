@@ -33,7 +33,7 @@ require.config({
 // No poseo rutas para la aplicación, por lo tanto no lo uso
 
 require([
-  'views/VillainView'
+  'views/VillainListView'
 ], function(App){
-	new App();
+	new App().render();
 });
