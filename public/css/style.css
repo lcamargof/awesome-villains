@@ -14,11 +14,17 @@ h1, h2, h3, h4, h5, h6 {
 
 a {
 	color: #c52a2a;
+	text-decoration: none;
 }
 
-a:hover, a:active {
+a:hover, a:active, a:focus {
 	color: #7a0d0d;
+	border-color: #7a0d0d;
 	text-decoration: none;
+}
+
+label {
+	color: #7a0d0d;
 }
 
 .dl-horizontal {

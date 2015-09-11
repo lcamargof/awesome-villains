@@ -32,4 +32,6 @@
 			</div>
 		</div> -->
 	</div>
+	<div class="modal fade" id="modal">
+	</div>
 @endsection

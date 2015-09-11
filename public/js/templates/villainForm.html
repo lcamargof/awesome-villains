@@ -1,0 +1,49 @@
+<div class="modal-dialog">
+	<div class="modal-content">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<h4 class="modal-title"><%= form.title %></h4>
+		</div>
+		<div class="modal-body">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-10 col-md-push-1">
+						<img src="./img/deadpool.jpg" alt="villain-image" id="previewImage" class="img-circle img-responsive center-block">
+						<hr class="v-hr">
+						<form action="#" method="POST">
+							<div class="form-group">
+								<label for="name">Nombre</label>
+								<input type="text" name="name" id="name" class="form-control" placeholder="Ingrese el awesome nombre del villano" value="<%= form.name %>">
+							</div>
+							<div class="form-group">
+								<label for="alias">Alias</label>
+								<input type="text" name="alias" id="alias" class="form-control" placeholder="Ingrese el awesome alias del villano" value="<%= form.alias %>">
+							</div>	 
+							<div class="form-group">
+								<label for="origin">Origen</label>
+								<input type="text" name="origin" id="origin" 
+								placeholder="Ingrese el awesome origen del villano" class="form-control" value="<%= form.origin %>">
+							</div>	 
+							<div class="form-group">
+								<label for="abilities">Habilidades</label>
+								<input type="text" name="abilities" id="abilities" placeholder="Ingrese las awesome habilidades del villano" class="form-control" value="<%= form.abilities %>">
+							</div>	 
+							<div class="form-group">
+								<label for="awesomeness">Awesomeness</label>
+								<input type="text" name="awesomeness" id="awesomeness" placeholder="Justifica lo awesome de este villano" class="form-control" value="<%= form.awesomeness %>">
+							</div>	 
+							<div class="form-group">
+								<label for="wiki">Wiki</label>
+								<input type="text" name="wiki" id="wiki" class="form-control" placeholder="Ingresa el link de la wiki del villano (debe tener su wiki???)" value="<%= form.wiki %>">
+							</div>	       		
+						</form>						
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-block btn-danger">Guardar cambios</button>
+		</div>
+	</div>
+</div>

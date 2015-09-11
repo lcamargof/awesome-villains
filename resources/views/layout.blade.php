@@ -3,6 +3,8 @@
 	<head>
 		<!-- Charset -->
 		<meta charset="utf-8">
+		{{-- CSRF TOKEN --}}
+		<meta name="csrf-token" content="{{ csrf_token() }}">
 		<!-- Viewport -->
 		<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, width=device-width">
 		<!-- Descrition -->
@@ -33,7 +35,7 @@
 			</section>
 		@show
 
-		<div class="container">
+		<div class="container" id="app-content">
 			<!-- Contenido de la página -->
 			@yield('content')
 
