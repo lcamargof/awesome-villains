@@ -16,28 +16,28 @@
 							<% } %>
 							<div class="form-group">
 								<label for="name">Nombre</label>
-								<input type="text" name="name" id="name" class="form-control" placeholder="Ingrese el awesome nombre del villano" value="<%= form.name %>">
+								<input type="text" name="name" id="name" class="form-control" placeholder="Ingrese el awesome nombre del villano" value="<%= villain.name %>">
 							</div>
 							<div class="form-group">
 								<label for="alias">Alias</label>
-								<input type="text" name="alias" id="alias" class="form-control" placeholder="Ingrese el awesome alias del villano" value="<%= form.alias %>">
+								<input type="text" name="alias" id="alias" class="form-control" placeholder="Ingrese el awesome alias del villano" value="<%= villain.alias %>">
 							</div>	 
 							<div class="form-group">
 								<label for="origin">Origen</label>
 								<input type="text" name="origin" id="origin" 
-								placeholder="Ingrese el awesome origen del villano" class="form-control" value="<%= form.origin %>">
+								placeholder="Ingrese el awesome origen del villano" class="form-control" value="<%= villain.origin %>">
 							</div>	 
 							<div class="form-group">
 								<label for="abilities">Habilidades</label>
-								<input type="text" name="abilities" id="abilities" placeholder="Ingrese las awesome habilidades del villano" class="form-control" value="<%= form.abilities %>">
+								<input type="text" name="abilities" id="abilities" placeholder="Ingrese las awesome habilidades del villano" class="form-control" value="<%= villain.abilities %>">
 							</div>	 
 							<div class="form-group">
 								<label for="awesomeness">Awesomeness</label>
-								<input type="text" name="awesomeness" id="awesomeness" placeholder="Justifica lo awesome de este villano" class="form-control" value="<%= form.awesomeness %>">
+								<input type="text" name="awesomeness" id="awesomeness" placeholder="Justifica lo awesome de este villano" class="form-control" value="<%= villain.awesomeness %>">
 							</div>	 
 							<div class="form-group">
 								<label for="wiki">Wiki</label>
-								<input type="text" name="wiki" id="wiki" class="form-control" placeholder="Ingresa el link de la wiki del villano (debe tener su wiki???)" value="<%= form.wiki %>">
+								<input type="text" name="wiki" id="wiki" class="form-control" placeholder="Ingresa el link de la wiki del villano (debe tener su wiki???)" value="<%= villain.wiki %>">
 							</div>	       		
 						</form>						
 					</div>
@@ -45,7 +45,7 @@
 			</div>
 		</div>
 		<div class="modal-footer">
-			<button type="button" class="btn btn-block btn-danger form-submit" data-villain="<%= form.id %>">Guardar cambios</button>
+			<button type="button" class="btn btn-block btn-danger form-submit">Guardar cambios</button>
 		</div>
 	</div>
 </div>

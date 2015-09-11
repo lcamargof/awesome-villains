@@ -5,10 +5,8 @@ define([
   'bootstrap',
   'collections/VillainCollection',
   'views/VillainView',
-  'text!templates/villainList.html',
-  'text!templates/villainForm.html',
-  'text!templates/villainResult.html'
-], function($, _, Backbone, Bootstrap, Villains, VillainView, villainListTemplate, villainFormTemplate, villainResultTemplate) {
+  'views/VillainFormView',
+], function($, _, Backbone, Bootstrap, Villains, VillainView, VillainFormView) {
 
   var villainListView = Backbone.View.extend({
     // Contenedor
@@ -19,6 +17,11 @@ define([
       _.bindAll(this, "renderVillain");
       // Container
       this.$vContainer = this.$('#villains-container');
+      // Form para añadir villano
+      $('#add-villain').click(function(event) {
+  	    	event.preventDefault();
+  	    	new VillainFormView();
+      });
     },
 
     renderVillain: function(villain){
@@ -36,22 +39,7 @@ define([
           data.each(that.renderVillain)
         }
       });
-    },
-
-    // show edit modal
-    showEditModal: function (e) {
-      var data = {
-        title : "Editar villano"
-      };
-
-      this.$modal.html(this.formTemplate({ form: data })).modal();
-    },
-
-    // show delete modal
-    showDeleteModal: function (e) {
-      $('.modal').modal();
-    },
-
+    }
   });
   // Regresando la awesome lista de villanos
   return villainListView;

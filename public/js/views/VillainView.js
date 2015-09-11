@@ -3,26 +3,17 @@ define([
   'underscore',
   'backbone',
   'bootstrap',
-  'text!templates/villainList.html',
-  'text!templates/villainForm.html',
-  'text!templates/villainResult.html'
-], function($, _, Backbone, Bootstrap, VillainListTemplate, VillainFormTemplate, VillainResultTemplate) {
+  'views/VillainFormView',
+  'text!templates/villainTemplate.html',
+], function($, _, Backbone, Bootstrap, VillainForm, VillainTemplate) {
 
   var villainView = Backbone.View.extend({
     // Template del villano
-    template: _.template(VillainListTemplate),
-    // Template del formulario
-    formTemplate: _.template(VillainFormTemplate),
+    template: _.template(VillainTemplate),
 
     events: {
         "click .edit-villain-btn": "editVillain",
         "click .remove-villain-btn": "removeVillain",
-        "click .form-submit": "submitVillain"
-    },
-
-    initialize: function(){
-      // Action modal
-      this.$modal = $('#modal');
     },
 
     render: function(){
@@ -30,16 +21,8 @@ define([
     },
 
     editVillain: function(e) {
-      var data = {
-        title : "Editar villano"
-      };
-
-      this.$modal.html(this.formTemplate({ form: data })).modal();      
+      new VillainForm({model: this.model});  
     },
-
-    submitVillain: function(e) {
-      alert('submit');
-    }
   });
   return villainView;
 });
