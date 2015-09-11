@@ -21,6 +21,7 @@ class VillainTableSeeder extends Seeder
 		   'awesomeness' => "It's fucking Deadpool yoh!",
 		   'wiki' => 'http://es.marvel.wikia.com/wiki/Deadpool',
 		   'avatar' => 'prueba',
+		   'created_at' => $c_date,
 		   'created_at' => $c_date
 		]);
     }
