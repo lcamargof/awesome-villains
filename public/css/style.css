@@ -27,6 +27,14 @@ label {
 	color: #7a0d0d;
 }
 
+dd {
+  text-overflow: ellipsis;
+
+  /* Required for text-overflow to do anything */
+  white-space: nowrap;
+  overflow: hidden;
+}
+
 .dl-horizontal {
 	margin: 0;
 	padding: 0;
@@ -91,6 +99,8 @@ label {
     margin: 0 10px;
     padding: 15px 0;
     border-bottom: 1px #c52a2a solid;
+  overflow: hidden
+  text-overflow: ellipsis
 	}
 
 	.a-villain:last-child {
@@ -160,4 +170,21 @@ footer span {
 	top:0;
 	width:100%;
 	z-index:9;
+}
+
+@media all and (max-width: 768px) {
+	.header-title {
+		font-size: 2.2em;
+	}
+	.a-villain {
+		display: block;
+	}
+	.v-description {
+		border: none;
+		margin-top: 25px !important;
+		margin-bottom: 25px !important;
+	}
+	.a-villain img {
+		margin: 0 auto;
+	}
 }
