@@ -151,7 +151,13 @@ class VillainController extends Controller
      */
     public function destroy($id)
     {
+        $avatar = Villain::find($id)->avatar;
+
         if(Villain::destroy($id)) {
+            if($avatar != 'default.jpg') {
+                File::delete(public_path().'/avatars'.'/'.$avatar);
+            }
+
             return response()->json([
                 'result' => 'success', 
                 'msg' => 'Villano expulsado awesomente'

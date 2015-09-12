@@ -36,22 +36,27 @@ define([
       });
     },
 
+    // Renderisar villano
     renderVillain: function(villain){
         var villainView = new VillainView({model: villain, parent: this });
         villainView.render();
-        this.$vContainer.append(villainView.el);
+        if(this.VillainCollection.length > 1)
+          this.$vContainer.append(villainView.el);
+        else
+          this.$vContainer.html(villainView.el);
     },
 
     // render view
     render: function() {
       var that = this;
+      // Obteniendo todos los villanos de la bd (/villain)
       this.VillainCollection.fetch({
         success: function (data) {
         	if(data.length > 0) {
-				that.$vContainer.html('');
-				data.each(that.renderVillain)        		
+    				that.$vContainer.html('');
+    				data.each(that.renderVillain);     		
         	} else {
-        		that.$vContainer.html('<h1 class="text-center">No existen villanos awesome en la lista :o</h1>')
+        		that.$vContainer.html('<h1 class="text-center">No existen villanos awesome en la lista :o</h1>');
         	}
         }
       });

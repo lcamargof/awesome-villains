@@ -15,17 +15,18 @@ define([
 		template: _.template(VillainFormTemplate),
 		// Template resultado del modal
 		resultTemplate: _.template(VillainResultTemplate),
-
+		// Eventos del modal
 		events: {
         "click .remove-villain-btn" : "removeVillain",
         "submit form" : "submitVillain"
    	},
 
+   	// Render form dentro del modal
 		render: function() {
 			// Render y muestra el modal del formulario
 			$(this.el).html(this.template({villain: this.villain, form: this.form})).modal();
 
-			// Declarando el uploader para la imagen
+			// Declarando el uploader para la imagen (si ya no esta definido)
 			if(!this.uploader) {
 	   		this.uploader = new ss.SimpleUpload({
 					button: 'previewImage', // file upload button
@@ -60,6 +61,7 @@ define([
 					}
 				});
 			} else {
+				// Trick por el z-index del uploader
 				$('input[name="uploadfile"]').closest('div').css('display', 'block');
 			}
 
@@ -67,7 +69,10 @@ define([
 			$(this.el).on('hidden.bs.modal', this.modalHidden);
 		},
 
+		// Initialize modal
 		formSet: function(action) {
+
+			// @action : new/edit
 			if(action == 'edit') {
 				this.villain = this.model.toJSON();
 				this.form = {
@@ -86,7 +91,7 @@ define([
 			// Render form
 			this.render();			
 		},
-
+		// Submit form (villano)
 		submitVillain: function(event) {
 			event.preventDefault();
 			var that = this;
@@ -109,33 +114,38 @@ define([
 				success: function(model, response) {
 					var icon = (response.result = 'success') ? 'check-circle' : 'exclamation-circle'; 
 					$(that.el).html(that.resultTemplate({msg: response.msg, icon: icon}));
-
+					// Si es un villano nuevo
 					if(response.id) {
+						// Añadiendo villano al collection (se ejecutara render para el view)
 						that.collection.add(model);
 					}
 				},
 
+				// Error añadiendo villano
 				error: function(model, response) {
+					// Validation error
 					if(response.status == 422) {
 						errors = JSON.parse(response.responseText);
 						errorList = '';
-
+						// Obteniendo lista de errores
 						$.each(errors, function(index, val) {
 							$('#' + index).closest('div.form-group').addClass('has-error');
 							errorList += "<li>"+val+"</li>";
 						});
-
+						// Mostrar la lista de errores
 						$('.alert').find('ul').html(errorList).end().show('slow');
 					} else {
+						// Error generico
 						alert('Ocurrio un error agregando al villano');
 					}
 				}
 			}).always(function() {
+				// Habilitando inputs
 				$form.find('input').prop('disabled', false);
 				$submitBtn.html('Guardar cambios').prop('disabled', false);
 			});
 		},
-
+		// Evento de "hide" modal, trick para el uploader
    	modalHidden: function(e) {
    		$('input[name="uploadfile"]').closest('div').css('display', 'none');
    	},

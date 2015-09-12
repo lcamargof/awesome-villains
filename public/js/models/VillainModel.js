@@ -3,8 +3,7 @@ define([
   'backbone'
 ], function(_, Backbone) {
 	var Villain = Backbone.Model.extend({
-		urlRoot: '/villain',
-		fileAttribute: 'avatar'
+		urlRoot: '/villain'
 	});
 	return Villain;
 });
