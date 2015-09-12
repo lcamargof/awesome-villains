@@ -29,7 +29,7 @@ define([
 
     editVillain: function(e) {
       this.parent.VillainForm.model = this.model;
-      this.parent.VillainForm.formSet(); 
+      this.parent.VillainForm.formSet('edit'); 
     },
 
     removeVillain: function(e) {

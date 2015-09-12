@@ -5,10 +5,10 @@ define([
 ], function(_, Backbone, Villain) {
 	var VillainCollection = Backbone.Collection.extend({
 		model: Villain,
-		url: '/villain',
+		url: 'villain',
 		parse: function(response) {
          return response.villains;
       }
 	});
-	return new VillainCollection;
+	return VillainCollection;
 });

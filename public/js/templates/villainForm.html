@@ -4,17 +4,26 @@
 			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 			<h4 class="modal-title"><%= form.title %></h4>
 		</div>
-		<form action="<%= form.action %>" method="POST" enctype="x-www-url-formurlencoded" data-remote="true">
+		<form action="<%= form.action %>" method="POST">
+			<% if (form.method) { %>
+			   <input type="hidden" name="_method" value="<%= form.method %>">
+			<% } %>
+			<input type="hidden" name="avatar" id="avatar" value="<%= (villain.avatar) ? villain.avatar : 'default.jpg' %>">
 			<div class="modal-body">
 				<div class="container-fluid">
 					<div class="row">
+						<div class="col-md-12">
+							<div class="alert alert-danger" role="alert">
+								<p><strong><i class="fa fa-exclamation-circle"></i> NOOOOOOOOO!!!!!</strong></p>
+								<ul>
+									<!-- Errores -->
+								</ul>
+							</div>
+						</div>
 						<div class="col-md-10 col-md-push-1">
-							<input id="avatarInput" type="file" name="avatar">
-							<% if (form.method) { %>
-							   <input type="hidden" name="_method" value="<%= form.method %>">
-							<% } %>
 							<div id="previewImageContainer">
 								<img src="./avatars/<%= (villain.avatar) ? villain.avatar : 'default.jpg' %>" alt="villain-image" id="previewImage" class="img-circle img-responsive center-block">
+								<p class="text-center text-danger" id="upload-text"><i class="fa fa-cog fa-spin"></i>  Subiendo imagen...</p>
 								<p class="text-center text-danger">Click en la imagen para cambiar (200x200)</p>
 							</div>
 							<hr class="v-hr">

@@ -11,7 +11,8 @@
         "components/backbone": "^1.2",
         "components/jquery": "^2.1",
         "components/underscore": "^1.7",
-        "components/font-awesome": "^4.4"
+        "components/font-awesome": "^4.4",
+        "intervention/image": "^2.3"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

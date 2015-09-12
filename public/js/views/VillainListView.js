@@ -15,17 +15,24 @@ define([
     // Villains form
     VillainForm: new VillainFormView(),
 
+    // Villains collection
+    VillainCollection: new Villains(),
+
     // init view
     initialize: function(){
       _.bindAll(this, "renderVillain");
       // Container
       this.$vContainer = this.$('#villains-container');
 
+      // Listen to new villain add
+      this.VillainCollection.on("add", this.renderVillain);
+
       var that = this;
       // Form para añadir villano
       $('#add-villain').click(function(event) {
   	    	event.preventDefault();
-  	    	that.VillainForm.formSet();
+  	    	that.VillainForm.collection = that.VillainCollection;
+  	    	that.VillainForm.formSet('new');
       });
     },
 
@@ -38,7 +45,7 @@ define([
     // render view
     render: function() {
       var that = this;
-      Villains.fetch({
+      this.VillainCollection.fetch({
         success: function (data) {
         	if(data.length > 0) {
 				that.$vContainer.html('');

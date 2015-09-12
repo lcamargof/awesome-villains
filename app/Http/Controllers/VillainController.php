@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Villain;
+use Intervention\Image\Facades\Image;
+use File;
 
 class VillainController extends Controller
 {
@@ -20,9 +22,13 @@ class VillainController extends Controller
             'origin'      => 'required|max:100',
             'abilities'   => 'required|max:150',
             'awesomeness' => 'required|max:100',
-            'wiki'        => 'required|max:100',
-            'avatar'      => 'max:2048'
+            'wiki'        => 'required|max:100'
         ];
+
+        $this->validationMessages = array(
+            'required'  => 'Se tiene que conocer el :attribute del villano!.',
+            'max'       => 'El :attribute no puede ser mayor a :max caracteres.'
+        );
     }
     /**
      * Mostrar la lista de villanos (index)
@@ -48,7 +54,13 @@ class VillainController extends Controller
     public function store(Request $request)
     {
         // Validando el input
-        $this->validate($request, $this->validationRules);
+        $this->validate($request, $this->validationRules, $this->validationMessages);
+
+        // Revisar si tiene avatar
+        if ($request->input('avatar') != 'default.jpg') {
+            // Hacer los cambios respectivos ver metodo
+            $this->moveAvatar($request->input('avatar'));
+        }
 
         // Creando el nuevo villano
         if($villain = Villain::create($request->input())) {
@@ -96,16 +108,14 @@ class VillainController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return $request->all();
         if($villain = Villain::find($id)) {
             // Validando el input
-            $this->validate($request, $this->validationRules);
+            $this->validate($request, $this->validationRules, $this->validationMessages);
 
             // Revisar si tiene avatar
-            if ($request->hasFile('avatar')) {
-                $filename = $string = str_random(20).'.'.$request->input('avatar')->getClientOriginalExtension();
-                $request->file('photo')->move( public_path().'/avatars/', $fileName);
-                $villain->avatar = $filename;
+            if ($request->input('avatar') != $villain->avatar) {
+                // Hacer los cambios respectivos ver metodo
+                $this->moveAvatar($request->input('avatar'), $villain->avatar);
             }
 
             // Actualizando campos (manera repetitiva)
@@ -115,6 +125,7 @@ class VillainController extends Controller
             $villain->abilities     = $request->input('abilities');
             $villain->awesomeness   = $request->input('awesomeness');
             $villain->wiki          = $request->input('wiki');
+            $villain->avatar        = $request->input('avatar');
             
             $villain->save();
             // return
@@ -151,5 +162,51 @@ class VillainController extends Controller
                 'msg' => 'Villano demasiado awesome para ser expulsado, siquiera existe?!'
             ], 200);    
         }
+    }
+
+    /**
+     * Avatar upload (ajax)
+     *
+     * @param  int  $id
+     * @return Response
+     */ 
+    public function uploadAvatar(Request $request) {
+        // Get file
+        $file = $request->file('uploadfile');
+
+        // Set random filename
+        $filename = str_random(20).'.'.$file->getClientOriginalExtension();
+
+        // resize the image to a height of 200 and constrain aspect ratio (auto width)
+        $img = Image::make($file)->fit(200, 200, null, 'top');
+
+        // El caso ideal seria subir la imagen a un servidor de amazon que se encargue de borrar las imagenes temporales/etc, aqui solo lo muevo a una carpeta temporal a la que se debe programar un proceso para remover los archivos viejos y listo
+        if($img->save('temporal'.'/'.$filename)) {
+            return response()->json([
+                'result' => 'success',
+                'file' => $filename
+            ], 200);    
+        } else {
+            return response()->json([
+                'result' => 'error'
+            ], 200);    
+        } 
+    }
+
+    /**
+     * Mover el archivo temporal
+     *
+     */
+
+    private function moveAvatar($new, $old = 'default.jpg') {
+        $oldpath = '/temporal'.'/'.$new;
+        $newpath = '/avatars'.'/'.$new;
+        // Renombrar el archivo
+        if(File::move(public_path().$oldpath, public_path().$newpath)) {
+            // Borrar avatar anterior si era distinto a default.jpg
+            if($old != 'default.jpg') {
+                File::delete('/avatars'.'/'.$old);
+            }
+        }         
     }
 }

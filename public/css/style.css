@@ -44,6 +44,10 @@ dd {
 	color: #7a0d0d;
 }
 
+.alert {
+	display: none;
+}
+
 /*----------  HEADER  ----------*/
 
 #header {
@@ -87,6 +91,9 @@ dd {
 }
 
 /*----------  CONTENT  ----------*/
+	#upload-text {
+		display: none;
+	}
 
 	.v-panel {
 		border-left: 10px #c52a2a solid;
@@ -128,7 +135,7 @@ dd {
 	}
 
 	#avatarInput {
-		display: none;
+		/*display: none;*/
 	}
 
 	#previewImage:hover {

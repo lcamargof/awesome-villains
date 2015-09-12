@@ -15,4 +15,5 @@ Route::get('/', function () {
     return view('index');
 });
 
+Route::post('villain/avatar', 'VillainController@uploadAvatar');
 Route::resource('villain', 'VillainController');
