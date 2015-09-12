@@ -21,7 +21,14 @@ define([
         "hidden.bs.modal #modal": "removeEvents"
    	},
 
-		initialize: function() {	
+		render: function() {
+			$(this.el)
+				.html(this.template({villain: this.villain, form: this.form}))
+				.modal()
+				.on('hidden.bs.modal', this.closeModal)
+		},
+
+		formSet: function() {
 			if(this.model) {
 				this.villain = this.model.toJSON();
 				this.form = {
@@ -37,14 +44,7 @@ define([
 				}
 			}
 			// Render form
-			this.render();
-		},
-
-		render: function() {
-			$(this.el)
-				.html(this.template({villain: this.villain, form: this.form}))
-				.modal()
-				.on('hidden.bs.modal', this.closeModal)
+			this.render();			
 		},
 
 		triggerUploadImage: function() {

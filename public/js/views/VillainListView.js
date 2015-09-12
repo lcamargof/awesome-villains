@@ -12,20 +12,25 @@ define([
     // Contenedor
     el: $('#app-content'),
 
+    // Villains form
+    VillainForm: new VillainFormView(),
+
     // init view
     initialize: function(){
       _.bindAll(this, "renderVillain");
       // Container
       this.$vContainer = this.$('#villains-container');
+
+      var that = this;
       // Form para añadir villano
       $('#add-villain').click(function(event) {
   	    	event.preventDefault();
-  	    	new VillainFormView();
+  	    	that.VillainForm.formSet();
       });
     },
 
     renderVillain: function(villain){
-        var villainView = new VillainView({model: villain});
+        var villainView = new VillainView({model: villain, parent: this });
         villainView.render();
         this.$vContainer.append(villainView.el);
     },

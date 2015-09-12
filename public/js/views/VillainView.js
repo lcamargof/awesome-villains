@@ -3,9 +3,8 @@ define([
   'underscore',
   'backbone',
   'bootstrap',
-  'views/VillainFormView',
   'text!templates/villainTemplate.html',
-], function($, _, Backbone, Bootstrap, VillainForm, VillainTemplate) {
+], function($, _, Backbone, Bootstrap, VillainTemplate) {
 
   var villainView = Backbone.View.extend({
     // Template del villano
@@ -18,12 +17,18 @@ define([
         "click .remove-villain-btn": "removeVillain",
     },
 
+    initialize: function(params) {
+      this.model = params.model;
+      this.parent = params.parent;
+    },
+
     render: function(){
       $(this.el).html(this.template({villain: this.model.toJSON()}));
     },
 
     editVillain: function(e) {
-      new VillainForm({model: this.model});  
+      this.parent.VillainForm.model = this.model;
+      this.parent.VillainForm.formSet(); 
     },
 
     removeVillain: function(e) {
