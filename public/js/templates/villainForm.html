@@ -4,52 +4,52 @@
 			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 			<h4 class="modal-title"><%= form.title %></h4>
 		</div>
-		<div class="modal-body">
-			<div class="container-fluid">
-				<div class="row">
-					<div class="col-md-10 col-md-push-1">
-						<form action="<%= form.action %>" method="POST">
+		<form action="<%= form.action %>" method="POST" enctype="x-www-url-formurlencoded" data-remote="true">
+			<div class="modal-body">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-md-10 col-md-push-1">
 							<input id="avatarInput" type="file" name="avatar">
 							<% if (form.method) { %>
 							   <input type="hidden" name="_method" value="<%= form.method %>">
 							<% } %>
 							<div id="previewImageContainer">
 								<img src="./avatars/<%= (villain.avatar) ? villain.avatar : 'default.jpg' %>" alt="villain-image" id="previewImage" class="img-circle img-responsive center-block">
-								<p class="text-center text-danger">Click en la imagen para cambiar</p>
+								<p class="text-center text-danger">Click en la imagen para cambiar (200x200)</p>
 							</div>
 							<hr class="v-hr">
 							<div class="form-group">
 								<label for="name">Nombre</label>
-								<input type="text" name="name" id="name" class="form-control" placeholder="Ingrese el awesome nombre del villano" value="<%= villain.name %>">
+								<input required type="text" name="name" id="name" class="form-control" placeholder="Ingrese el awesome nombre del villano" value="<%= villain.name %>">
 							</div>
 							<div class="form-group">
 								<label for="alias">Alias</label>
-								<input type="text" name="alias" id="alias" class="form-control" placeholder="Ingrese el awesome alias del villano" value="<%= villain.alias %>">
+								<input required type="text" name="alias" id="alias" class="form-control" placeholder="Ingrese el awesome alias del villano" value="<%= villain.alias %>">
 							</div>	 
 							<div class="form-group">
 								<label for="origin">Origen</label>
-								<input type="text" name="origin" id="origin" 
+								<input required type="text" name="origin" id="origin" 
 								placeholder="Ingrese el awesome origen del villano" class="form-control" value="<%= villain.origin %>">
 							</div>	 
 							<div class="form-group">
 								<label for="abilities">Habilidades</label>
-								<input type="text" name="abilities" id="abilities" placeholder="Ingrese las awesome habilidades del villano" class="form-control" value="<%= villain.abilities %>">
+								<input required type="text" name="abilities" id="abilities" placeholder="Ingrese las awesome habilidades del villano" class="form-control" value="<%= villain.abilities %>">
 							</div>	 
 							<div class="form-group">
 								<label for="awesomeness">Awesomeness</label>
-								<input type="text" name="awesomeness" id="awesomeness" placeholder="Justifica lo awesome de este villano" class="form-control" value="<%= villain.awesomeness %>">
+								<input required type="text" name="awesomeness" id="awesomeness" placeholder="Justifica lo awesome de este villano" class="form-control" value="<%= villain.awesomeness %>">
 							</div>	 
 							<div class="form-group">
 								<label for="wiki">Wiki</label>
-								<input type="text" name="wiki" id="wiki" class="form-control" placeholder="Ingresa el link de la wiki del villano (debe tener su wiki???)" value="<%= villain.wiki %>">
-							</div>	       		
-						</form>						
+								<input required type="text" name="wiki" id="wiki" class="form-control" placeholder="Ingresa el link de la wiki del villano (debe tener su wiki???)" value="<%= villain.wiki %>">
+							</div>						
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-		<div class="modal-footer">
-			<button type="button" class="btn btn-block btn-danger form-submit">Guardar cambios</button>
-		</div>
+			<div class="modal-footer">
+				<button type="submit" class="btn btn-block btn-danger">Guardar cambios</button>
+			</div>
+		</form> 
 	</div>
 </div>

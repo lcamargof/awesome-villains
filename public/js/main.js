@@ -15,6 +15,10 @@ require.config({
 		text: {
 		   deps : [ 'jquery', 'underscore', 'backbone' ],
 		   exports: 'Text'
+		},
+		bmUpload: {
+			deps: ['jquery', 'underscore', 'backbone'],
+			exports: 'Backbone'
 		}
    },
   paths: {
@@ -22,7 +26,8 @@ require.config({
 	jquery: 		'libs/jquery.min',
 	underscore: 'libs/underscore.min',
 	backbone: 	'libs/backbone.min',
-	bootstrap: 	'libs/bootstrap.min', 
+	bootstrap: 	'libs/bootstrap.min',
+	bmUpload: 	'libs/backbone-model-file-upload',
 
    // Require.js plugins
 	text: 'libs/require/text',

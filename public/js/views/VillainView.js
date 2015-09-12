@@ -20,6 +20,7 @@ define([
     initialize: function(params) {
       this.model = params.model;
       this.parent = params.parent;
+      this.model.on('change', this.render, this);
     },
 
     render: function(){
@@ -42,7 +43,7 @@ define([
             }
             alert(response.msg);
           },
-          fail: function(mode, response) {
+          fail: function(model, response) {
             alert('No se pudo eliminar el villano.');
           }
         });

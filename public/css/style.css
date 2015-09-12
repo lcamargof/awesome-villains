@@ -122,6 +122,9 @@ dd {
 	    -o-transition: all 0.4s ease;
 	    transition: all 0.4s ease;
 	    z-index: 2;
+	    max-width: 200px;
+	    min-height: 200px;
+	    max-height: 200px;
 	}
 
 	#avatarInput {
@@ -133,16 +136,12 @@ dd {
 		cursor: pointer;
 	}
 
-/*	.img-overlay {
-		background:none repeat scroll 0 0 #242434;
-		height:100%;opacity:0.5;
-		position:absolute;
-		right:0;
-		top:0;
-		width:100%;
-		z-index:9;
+	.modal-result-icon {
+		font-size: 12em;
+		color: #c52a2a;
+		margin-bottom: -50px;
+		margin-top: -40px;
 	}
-*/
 /*----------  FOOTER  ----------*/
 
 footer span {
@@ -176,6 +175,9 @@ footer span {
 	.header-title {
 		font-size: 2.2em;
 	}
+	#header {
+		font-size: 1.5em;
+	}
 	.a-villain {
 		display: block;
 	}
@@ -186,5 +188,11 @@ footer span {
 	}
 	.a-villain img {
 		margin: 0 auto;
+	}
+}
+
+@media all and (max-width: 360px) {
+	#header {
+		font-size: 1.2em;
 	}
 }

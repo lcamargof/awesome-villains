@@ -14,14 +14,14 @@ class VillainController extends Controller
 
     public function __construct() {
         // Reglas de validación
-        $validationRules = [
+        $this->validationRules = [
             'name'        => 'required|max:50',
             'alias'       => 'required|max:50',
             'origin'      => 'required|max:100',
             'abilities'   => 'required|max:150',
             'awesomeness' => 'required|max:100',
             'wiki'        => 'required|max:100',
-            'avatar'      => 'max:100'
+            'avatar'      => 'max:2048'
         ];
     }
     /**
@@ -96,9 +96,18 @@ class VillainController extends Controller
      */
     public function update(Request $request, $id)
     {
+        return $request->all();
         if($villain = Villain::find($id)) {
             // Validando el input
             $this->validate($request, $this->validationRules);
+
+            // Revisar si tiene avatar
+            if ($request->hasFile('avatar')) {
+                $filename = $string = str_random(20).'.'.$request->input('avatar')->getClientOriginalExtension();
+                $request->file('photo')->move( public_path().'/avatars/', $fileName);
+                $villain->avatar = $filename;
+            }
+
             // Actualizando campos (manera repetitiva)
             $villain->name          = $request->input('name');
             $villain->alias         = $request->input('alias');
@@ -106,7 +115,7 @@ class VillainController extends Controller
             $villain->abilities     = $request->input('abilities');
             $villain->awesomeness   = $request->input('awesomeness');
             $villain->wiki          = $request->input('wiki');
-            $villain->avatar        = $request->input('avatar');
+            
             $villain->save();
             // return
             return response()->json([
