@@ -22,7 +22,7 @@ class VillainTableSeeder extends Seeder
 		   'wiki' => 'http://es.marvel.wikia.com/wiki/Deadpool',
 		   'avatar' => 'deadpool.jpg',
 		   'created_at' => $c_date,
-		   'created_at' => $c_date
+		   'updated_at' => $c_date
 		], [
 		   'name' => 'Slade Wilson',
 		   'alias' => 'DeathStroke',
@@ -32,7 +32,7 @@ class VillainTableSeeder extends Seeder
 		   'wiki' => 'http://dc.wikia.com/wiki/Slade_Wilson_(Prime_Earth)',
 		   'avatar' => 'deathstroke.jpg',
 		   'created_at' => $c_date,
-		   'created_at' => $c_date
+		   'updated_at' => $c_date
 		], [
 		   'name' => 'Anakin Skywalker',
 		   'alias' => 'Darth Vader',
@@ -42,7 +42,7 @@ class VillainTableSeeder extends Seeder
 		   'wiki' => 'http://es.starwars.wikia.com/wiki/Darth_Vader:_El_Se%C3%B1or_Oscuro',
 		   'avatar' => 'vader.jpg',
 		   'created_at' => $c_date,
-		   'created_at' => $c_date
+		   'updated_at' => $c_date
 		], [
 		   'name' => 'Sephiroth',
 		   'alias' => 'Sefirot?',
@@ -52,7 +52,7 @@ class VillainTableSeeder extends Seeder
 		   'wiki' => 'http://es.finalfantasy.wikia.com/wiki/Sefirot',
 		   'avatar' => 'sephiroth.jpg',
 		   'created_at' => $c_date,
-		   'created_at' => $c_date
+		   'updated_at' => $c_date
 		], [
 		   'name' => 'The Joker',
 		   'alias' => 'Joker',
@@ -62,7 +62,7 @@ class VillainTableSeeder extends Seeder
 		   'wiki' => 'http://batman.wikia.com/wiki/The_Joker',
 		   'avatar' => 'joker.jpg',
 		   'created_at' => $c_date,
-		   'created_at' => $c_date
+		   'updated_at' => $c_date
 		]]);
    }
 }
