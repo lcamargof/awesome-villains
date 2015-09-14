@@ -24,6 +24,10 @@ define([
       // Container
       this.$vContainer = this.$('#villains-container');
 
+      // pre-load default preview image
+      var preload= new Image(200,200);
+      preload.src = "../avatars/default.jpg";
+
       // Listen to new villain add
       this.VillainCollection.on("add", this.renderVillain);
 

@@ -27,43 +27,42 @@ define([
 			$(this.el).html(this.template({villain: this.villain, form: this.form})).modal();
 
 			// Declarando el uploader para la imagen (si ya no esta definido)
-			if(!this.uploader) {
-	   		this.uploader = new ss.SimpleUpload({
-					button: 'previewImage', // file upload button
-					url: 'villain/avatar', // server side handler
-					name: 'uploadfile', // upload parameter name
-					multipart: true,
-					responseType: 'json',    
-					customHeaders: {'x-csrf-token': $('meta[name="csrf-token"]').attr('content')},
-					allowedExtensions: ['jpg', 'jpeg', 'png', 'gif'],
-					maxSize: 1024, // kilobytes
-					onSubmit: function(filename, extension) {
-						$('#upload-text').fadeIn('fast');
-						$('#avatarInput').prop('disabled', true);
-					},        
-					onError: function( filename, errorType, status, statusText, response, uploadBtn ) {
-						alert('No se pudo subir esta imagen.');
-					},
-					onExtError: function( filename, extension ) {
-						alert('Solo se permiten imagenes jpg/jpeg/png/gif');
-					},
-					onSizeError: function( filename, fileSize ) {
-						alert('La imagen no debe de pesar más de 1MB.');
-					},
-					onComplete: function(filename, response) {
-						$('#upload-text').fadeOut('fast');
-						if (!response || response.result == 'error') {
-							alert('No se pudo subir esta imagen.');
-							return false;            
-						}
-						$('#previewImage').attr('src', '/temporal/'+response.file);
-						$('#avatar').val(response.file);
-					}
-				});
-			} else {
-				// Trick por el z-index del uploader
-				$('input[name="uploadfile"]').closest('div').css('display', 'block');
+			if(this.uploader) {
+				this.uploader.destroy();
 			}
+
+   		this.uploader = new ss.SimpleUpload({
+				button: 'previewImage', // file upload button
+				url: 'villain/avatar', // server side handler
+				name: 'uploadfile', // upload parameter name
+				multipart: true,
+				responseType: 'json',    
+				customHeaders: {'x-csrf-token': $('meta[name="csrf-token"]').attr('content')},
+				allowedExtensions: ['jpg', 'jpeg', 'png', 'gif'],
+				maxSize: 1024, // kilobytes
+				onSubmit: function(filename, extension) {
+					$('#upload-text').fadeIn('fast');
+					$('#avatarInput').prop('disabled', true);
+				},        
+				onError: function( filename, errorType, status, statusText, response, uploadBtn ) {
+					alert('No se pudo subir esta imagen.');
+				},
+				onExtError: function( filename, extension ) {
+					alert('Solo se permiten imagenes jpg/jpeg/png/gif');
+				},
+				onSizeError: function( filename, fileSize ) {
+					alert('La imagen no debe de pesar más de 1MB.');
+				},
+				onComplete: function(filename, response) {
+					$('#upload-text').fadeOut('fast');
+					if (!response || response.result == 'error') {
+						alert('No se pudo subir esta imagen.');
+						return false;            
+					}
+					$('#previewImage').attr('src', '/temporal/'+response.file);
+					$('#avatar').val(response.file);
+				}
+			});
 
 			// unbind uploader input
 			$(this.el).on('hidden.bs.modal', this.modalHidden);
@@ -147,7 +146,7 @@ define([
 		},
 		// Evento de "hide" modal, trick para el uploader
    	modalHidden: function(e) {
-   		$('input[name="uploadfile"]').closest('div').css('display', 'none');
+   		$('input[name="uploadfile"]').closest('div').remove();
    	},
 	});
 	// Return instance
